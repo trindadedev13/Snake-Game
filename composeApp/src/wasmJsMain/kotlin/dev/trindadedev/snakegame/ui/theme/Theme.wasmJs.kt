@@ -8,7 +8,9 @@ import androidx.compose.runtime.Composable
 internal actual fun SnakeTheme(content: @Composable () -> Unit) {
   MaterialTheme(
     colorScheme = AppColorScheme(),
-    typography = Typography,
-    content = { Surface(content = content) },
+    typography = Typography(),
+    content = {
+      Surface(content = content)
+    },
   )
 }
