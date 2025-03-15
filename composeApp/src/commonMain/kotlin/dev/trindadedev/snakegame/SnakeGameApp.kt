@@ -16,8 +16,10 @@ fun SnakeGameApp() {
     horizontalAlignment = Alignment.CenterHorizontally,
     verticalArrangement = Arrangement.Center,
   ) {
-    Button(onClick = { }) {
-      Text("Its My Website lmao")
-    }
+    DirectionButtons(
+      onClick = { direction ->
+        
+      }
+    )
   }
 }
