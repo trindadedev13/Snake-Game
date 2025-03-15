@@ -3,4 +3,6 @@
   <string name="str_down">Down</string>
   <string name="str_left">Left</string>
   <string name="str_right">Right</string>
+  <string name="str_game_over">Game Over Noob</string>
+  <string name="str_restart">Restart</string>
 </resources>
