@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
 plugins {
-  alias(libs.plugins.multiplatform)
+  alias(libs.plugins.kotlin.multiplatform)
   alias(libs.plugins.compose)
   alias(libs.plugins.compose.compiler)
   alias(libs.plugins.android.application)
@@ -40,15 +40,19 @@ kotlin {
       implementation(compose.runtime)
       implementation(compose.material3)
       implementation(compose.materialIconsExtended)
+
       @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
       implementation(compose.components.resources)
+
       implementation(libs.kotlinx.coroutines.core)
       implementation(libs.kotlinx.serialization.json)
+
+      implementation(libs.androidx.lifecycle.viewmodel.compose)
     }
 
     androidMain.dependencies {
       implementation(libs.androidx.appcompat)
-      implementation(libs.androidx.activityCompose)
+      implementation(libs.androidx.activity.compose)
       implementation(libs.kotlinx.coroutines.android)
     }
 
