@@ -39,6 +39,10 @@ object SnakeGameTokens {
   }
 
   object DirectionButtons {
+    object Dimens {
+      val Size = 70.dp
+    }
+
     object Icons {
       val Down = MIcons.Rounded.KeyboardArrowDown
       val Left = MIcons.Rounded.KeyboardArrowLeft

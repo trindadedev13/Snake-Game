@@ -41,7 +41,7 @@ fun SnakeGameDirectionButtons(
     if (centerSlot != null) {
       centerSlot?.invoke()
     } else {
-      Spacer(modifier = Modifier.size(70.dp))
+      Spacer(modifier = Modifier.size(SnakeGameTokens.DirectionButtons.Dimens.Size))
     }
     SnakeGameDirectionButton(
       name = stringResource(resource = Res.string.str_right),
@@ -68,7 +68,7 @@ internal fun SnakeGameDirectionButton(name: String, icon: ImageVector, onClick: 
   Image(
     imageVector = icon,
     contentDescription = name,
-    modifier = Modifier.size(70.dp).clickable(onClick = onClick, onClickLabel = name),
+    modifier = Modifier.size(SnakeGameTokens.DirectionButtons.Dimens.Size).clickable(onClick = onClick, onClickLabel = name),
   )
 }
 
