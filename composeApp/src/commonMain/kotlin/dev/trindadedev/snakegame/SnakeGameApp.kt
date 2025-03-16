@@ -52,6 +52,6 @@ fun SnakeGameApp(viewModel: SnakeViewModel = viewModel { SnakeViewModel() }) {
   }
 }
 
-private fun getMillis(): Long {
+private inline fun getMillis(): Long {
   return Clock.System.now().toEpochMilliseconds()
 }
