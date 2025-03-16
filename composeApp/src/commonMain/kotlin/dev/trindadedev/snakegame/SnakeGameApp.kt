@@ -18,11 +18,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.viewmodel.compose.viewModel
-import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import snake.composeapp.generated.resources.Res
-import snake.composeapp.generated.resources.ic_pause
-import snake.composeapp.generated.resources.ic_play
 import snake.composeapp.generated.resources.str_pause
 import snake.composeapp.generated.resources.str_play
 import kotlinx.coroutines.delay
@@ -68,14 +65,14 @@ fun SnakeGameApp(viewModel: SnakeViewModel = viewModel { SnakeViewModel() }) {
     ) {
       SnakeGameGrid(uiState.snake, uiState.food)
       Spacer(modifier = Modifier.height(16.dp))
-      DirectionButtons(
+      SnakeGameDirectionButtons(
         onClick = {
           if (!uiState.snake.state.direction.isOpposite(it)) viewModel.setCurrentDirection(it)
         },
         centerSlot = {
-          DirectionButton(
+          SnakeGameDirectionButton(
             name = stringResource(resource = if (uiState.isPaused) Res.string.str_play else Res.string.str_pause),
-            icon = painterResource(resource = if (uiState.isPaused) Res.drawable.ic_play else Res.drawable.ic_pause),
+            icon = if (uiState.isPaused) SnakeGameTokens.DirectionButtons.Icons.Play else SnakeGameTokens.DirectionButtons.Icons.Pause,
             onClick = { viewModel.setIsPaused(!uiState.isPaused) },
           )
         }

@@ -1,5 +1,12 @@
 package dev.trindadedev.snakegame
 
+import androidx.compose.material.icons.Icons as MIcons
+import androidx.compose.material.icons.rounded.KeyboardArrowDown
+import androidx.compose.material.icons.rounded.KeyboardArrowLeft
+import androidx.compose.material.icons.rounded.KeyboardArrowRight
+import androidx.compose.material.icons.rounded.KeyboardArrowUp
+import androidx.compose.material.icons.rounded.Pause
+import androidx.compose.material.icons.rounded.PlayArrow
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
@@ -25,6 +32,17 @@ object SnakeGameTokens {
 
       val EmptyColor: Color
         @Composable get() = MaterialTheme.colorScheme.surfaceContainerHighest
+    }
+  }
+
+  object DirectionButtons {
+    object Icons {
+      val Down = MIcons.Rounded.KeyboardArrowDown
+      val Left = MIcons.Rounded.KeyboardArrowLeft
+      val Right = MIcons.Rounded.KeyboardArrowRight
+      val Up = MIcons.Rounded.KeyboardArrowUp
+      val Pause = MIcons.Rounded.Pause
+      val Play = MIcons.Rounded.PlayArrow
     }
   }
 }

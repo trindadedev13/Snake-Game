@@ -8,15 +8,10 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
-import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import snake.composeapp.generated.resources.Res
-import snake.composeapp.generated.resources.ic_down
-import snake.composeapp.generated.resources.ic_left
-import snake.composeapp.generated.resources.ic_right
-import snake.composeapp.generated.resources.ic_up
 import snake.composeapp.generated.resources.str_down
 import snake.composeapp.generated.resources.str_left
 import snake.composeapp.generated.resources.str_right
@@ -28,19 +23,19 @@ import snake.composeapp.generated.resources.str_up
  * @param onClick The lambda Called when user click to move, returns an Direction.
  */
 @Composable
-fun DirectionButtons(
+fun SnakeGameDirectionButtons(
   onClick: (Direction) -> Unit,
   centerSlot: (@Composable () -> Unit)? = null
 ) {
-  DirectionButton(
+  SnakeGameDirectionButton(
     name = stringResource(resource = Res.string.str_up),
-    icon = painterResource(resource = Res.drawable.ic_up),
+    icon = SnakeGameTokens.DirectionButtons.Icons.Up,
     onClick = { onClick(Direction.UP) },
   )
   Row(horizontalArrangement = Arrangement.spacedBy(-8.dp)) {
-    DirectionButton(
+    SnakeGameDirectionButton(
       name = stringResource(resource = Res.string.str_left),
-      icon = painterResource(resource = Res.drawable.ic_left),
+      icon = SnakeGameTokens.DirectionButtons.Icons.Left,
       onClick = { onClick(Direction.LEFT) },
     )
     if (centerSlot != null) {
@@ -48,15 +43,15 @@ fun DirectionButtons(
     } else {
       Spacer(modifier = Modifier.size(70.dp))
     }
-    DirectionButton(
+    SnakeGameDirectionButton(
       name = stringResource(resource = Res.string.str_right),
-      icon = painterResource(resource = Res.drawable.ic_right),
+      icon = SnakeGameTokens.DirectionButtons.Icons.Right,
       onClick = { onClick(Direction.RIGHT) },
     )
   }
-  DirectionButton(
+  SnakeGameDirectionButton(
     name = stringResource(resource = Res.string.str_down),
-    icon = painterResource(resource = Res.drawable.ic_down),
+    icon = SnakeGameTokens.DirectionButtons.Icons.Down,
     onClick = { onClick(Direction.DOWN) },
   )
 }
@@ -65,13 +60,13 @@ fun DirectionButtons(
  * Button used to move Snake.
  *
  * @param name The name of Actionz for Accessibility.
- * @param icon The PainterResource of icon.
+ * @param icon The ImageVector of icon.
  * @param onClick The lambda called when user click in it.
  */
 @Composable
-internal fun DirectionButton(name: String, icon: Painter, onClick: () -> Unit) {
+internal fun SnakeGameDirectionButton(name: String, icon: ImageVector, onClick: () -> Unit) {
   Image(
-    painter = icon,
+    imageVector = icon,
     contentDescription = name,
     modifier = Modifier.size(70.dp).clickable(onClick = onClick, onClickLabel = name),
   )
