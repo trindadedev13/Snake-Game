@@ -1,42 +1,56 @@
 package dev.trindadedev.snakegame
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.Dp
+
+@Immutable
+open class GridItem(open val x: Int, open val y: Int) {
+  override fun toString(): String {
+    return "GridItem(x=$x, y=$y)"
+  }
+
+  override fun equals(other: Any?): Boolean {
+    if (this === other) return true
+    if (other !is GridItem) return false
+    return x == other.x && y == other.y
+  }
+
+  override fun hashCode(): Int {
+    return 31 * x + y
+  }
+}
 
 @Composable
-fun SnakeGameGrid(
-  snake: List<Cell>,
-  food: Cell,
-) {
+fun SnakeGameGrid(snake: Snake, food: Food) {
   Column {
-    for (i in 0 until SnakeGameTokens.Cell.PerRow) {
+    for (y in 0 until SnakeGameTokens.GridItem.PerRow) {
       Row {
-        for (j in 0 until SnakeGameTokens.Cell.PerRow) {
+        for (x in 0 until SnakeGameTokens.GridItem.PerRow) {
           Box(
-            modifier = Modifier
-              .size(SnakeGameTokens.Cell.Size)
-              .border(
-                border = BorderStroke(
-                  width = SnakeGameTokens.Cell.BorderStrokeWidth,
-                  color = SnakeGameTokens.Cell.Colors.BorderStrokeColor
+            modifier =
+              Modifier.size(SnakeGameTokens.GridItem.Size)
+                .border(
+                  border =
+                    BorderStroke(
+                      width = SnakeGameTokens.GridItem.BorderStrokeWidth,
+                      color = SnakeGameTokens.GridItem.Colors.BorderStrokeColor,
+                    )
                 )
-              )
-              .background(
-                when (Cell(j, i)) {
-                  in snake -> SnakeGameTokens.Cell.Colors.SnakeColor
-                  food -> SnakeGameTokens.Cell.Colors.FoodColor
-                  else -> SnakeGameTokens.Cell.Colors.EmptyColor
-                }
-              )
+                .background(
+                  when (GridItem(x, y)) {
+                    in snake.state.body -> SnakeGameTokens.GridItem.Colors.SnakeColor
+                    food -> SnakeGameTokens.GridItem.Colors.FoodColor
+                    else -> SnakeGameTokens.GridItem.Colors.EmptyColor
+                  }
+                )
           )
         }
       }

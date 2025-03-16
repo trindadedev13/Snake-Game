@@ -9,8 +9,6 @@ internal actual fun SnakeTheme(content: @Composable () -> Unit) {
   MaterialTheme(
     colorScheme = AppColorScheme(),
     typography = Typography(),
-    content = {
-      Surface(content = content)
-    },
+    content = { Surface(content = content) },
   )
 }

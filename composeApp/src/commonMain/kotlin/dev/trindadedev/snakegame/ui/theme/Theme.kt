@@ -14,6 +14,11 @@ internal fun rememberIsSystemInDarkTheme(): Boolean {
 }
 
 @Composable
+internal fun rememberIsHightContrastTheme(): Boolean {
+  return remember { false }
+}
+
+@Composable
 internal fun AppColorScheme(): ColorScheme {
   val darkTheme = rememberIsSystemInDarkTheme()
   return when {
