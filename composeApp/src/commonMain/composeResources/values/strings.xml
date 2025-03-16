@@ -5,4 +5,6 @@
   <string name="str_right">Right</string>
   <string name="str_game_over">Game Over Noob</string>
   <string name="str_restart">Restart</string>
+  <string name="str_play">Play</string>
+  <string name="str_pause">Pause</string>
 </resources>

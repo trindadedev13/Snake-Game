@@ -28,7 +28,10 @@ import snake.composeapp.generated.resources.str_up
  * @param onClick The lambda Called when user click to move, returns an Direction.
  */
 @Composable
-fun DirectionButtons(onClick: (Direction) -> Unit) {
+fun DirectionButtons(
+  onClick: (Direction) -> Unit,
+  centerSlot: (@Composable () -> Unit)? = null
+) {
   DirectionButton(
     name = stringResource(resource = Res.string.str_up),
     icon = painterResource(resource = Res.drawable.ic_up),
@@ -40,7 +43,11 @@ fun DirectionButtons(onClick: (Direction) -> Unit) {
       icon = painterResource(resource = Res.drawable.ic_left),
       onClick = { onClick(Direction.LEFT) },
     )
-    Spacer(modifier = Modifier.size(70.dp))
+    if (centerSlot != null) {
+      centerSlot?.invoke()
+    } else {
+      Spacer(modifier = Modifier.size(70.dp))
+    }
     DirectionButton(
       name = stringResource(resource = Res.string.str_right),
       icon = painterResource(resource = Res.drawable.ic_right),
@@ -62,7 +69,7 @@ fun DirectionButtons(onClick: (Direction) -> Unit) {
  * @param onClick The lambda called when user click in it.
  */
 @Composable
-private fun DirectionButton(name: String, icon: Painter, onClick: () -> Unit) {
+internal fun DirectionButton(name: String, icon: Painter, onClick: () -> Unit) {
   Image(
     painter = icon,
     contentDescription = name,

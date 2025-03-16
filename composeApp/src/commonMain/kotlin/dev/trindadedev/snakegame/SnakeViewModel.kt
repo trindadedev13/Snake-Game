@@ -29,4 +29,9 @@ class SnakeViewModel : ViewModel() {
   fun setLastMoveTime(newLastMoveTime: Long) {
     _uiState = _uiState.copy(lastMoveTime = newLastMoveTime)
   }
+
+  fun setIsPaused(newIsPaused: Boolean) {
+    if (_uiState.isPaused == newIsPaused) return
+    _uiState = _uiState.copy(isPaused = newIsPaused)
+  }
 }

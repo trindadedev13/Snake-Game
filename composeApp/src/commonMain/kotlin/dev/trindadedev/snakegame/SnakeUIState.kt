@@ -9,4 +9,5 @@ data class SnakeUIState(
   val gameSpeed: Long = 50L,
   val snakeSpeed: Long = 200L,
   val lastMoveTime: Long = 0L,
+  val isPaused: Boolean = false
 )
