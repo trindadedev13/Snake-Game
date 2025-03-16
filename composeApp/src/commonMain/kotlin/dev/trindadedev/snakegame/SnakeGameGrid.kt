@@ -18,9 +18,9 @@ fun SnakeGameGrid(
   food: Cell,
 ) {
   Column {
-    for (i in 0 until SnakeGameTokens.GridSize) {
+    for (i in 0 until SnakeGameTokens.Cell.PerRow) {
       Row {
-        for (j in 0 until SnakeGameTokens.GridSize) {
+        for (j in 0 until SnakeGameTokens.Cell.PerRow) {
           Box(
             modifier = Modifier
               .size(SnakeGameTokens.Cell.Size)

@@ -77,14 +77,13 @@ private fun moveSnake(
 
 private fun growSnake(
   snake: List<Cell>,
-  direction: Direction,
-  gridSize: Int = SnakeGameTokens.GridSize
+  direction: Direction
 ): List<Cell> {
   val growth = when (direction) {
-    Direction.UP -> Cell(snake.first().x, (snake.first().y - 1 + gridSize) % gridSize)
-    Direction.DOWN -> Cell(snake.first().x, (snake.first().y + 1) % gridSize)
-    Direction.LEFT -> Cell((snake.first().x - 1 + gridSize) % gridSize, snake.first().y)
-    Direction.RIGHT -> Cell((snake.first().x + 1) % gridSize, snake.first().y)
+    Direction.UP -> Cell(snake.first().x, (snake.first().y - 1 + SnakeGameTokens.Cell.PerRow) % SnakeGameTokens.Cell.PerRow)
+    Direction.DOWN -> Cell(snake.first().x, (snake.first().y + 1) % SnakeGameTokens.Cell.PerRow)
+    Direction.LEFT -> Cell((snake.first().x - 1 + SnakeGameTokens.Cell.PerRow) % SnakeGameTokens.Cell.PerRow, snake.first().y)
+    Direction.RIGHT -> Cell((snake.first().x + 1) % SnakeGameTokens.Cell.PerRow, snake.first().y)
   }
   return listOf(growth) + snake
 }
