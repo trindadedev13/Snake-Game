@@ -36,11 +36,11 @@ fun SnakeGameGrid(snake: Snake, food: Food) {
         for (x in 0 until SnakeGameTokens.GridItem.PerRow) {
           Box(
             modifier =
-              Modifier.size(SnakeGameTokens.GridItem.Size)
+              Modifier.size(SnakeGameTokens.GridItem.Dimens.Size)
                 .border(
                   border =
                     BorderStroke(
-                      width = SnakeGameTokens.GridItem.BorderStrokeWidth,
+                      width = SnakeGameTokens.GridItem.Dimens.BorderStrokeWidth,
                       color = SnakeGameTokens.GridItem.Colors.BorderStrokeColor,
                     )
                 )

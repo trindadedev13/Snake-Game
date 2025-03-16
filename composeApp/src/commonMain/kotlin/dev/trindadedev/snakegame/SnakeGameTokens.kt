@@ -16,8 +16,11 @@ object SnakeGameTokens {
   /** values used in game cells */
   object GridItem {
     val PerRow = 20
-    val Size = 16.dp
-    val BorderStrokeWidth = 0.2.dp
+
+    object Dimens {
+      val Size = 16.dp
+      val BorderStrokeWidth = 0.2.dp
+    }
 
     /** Colors used in game cells * */
     object Colors {
