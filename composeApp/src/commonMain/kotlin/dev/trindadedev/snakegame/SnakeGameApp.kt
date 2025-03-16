@@ -66,6 +66,7 @@ fun SnakeGameApp(viewModel: SnakeViewModel = viewModel { SnakeViewModel() }) {
       SnakeGameGrid(uiState.snake, uiState.food)
       Spacer(modifier = Modifier.height(16.dp))
       SnakeGameDirectionButtons(
+        enabled = uiState.isPaused,
         onClick = {
           if (!uiState.snake.state.direction.isOpposite(it)) viewModel.setCurrentDirection(it)
         },

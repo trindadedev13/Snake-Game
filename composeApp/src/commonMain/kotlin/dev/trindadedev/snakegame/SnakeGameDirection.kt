@@ -24,19 +24,22 @@ import snake.composeapp.generated.resources.str_up
  */
 @Composable
 fun SnakeGameDirectionButtons(
+  enabled: Boolean = true,
+  centerSlot: (@Composable () -> Unit)? = null,
   onClick: (Direction) -> Unit,
-  centerSlot: (@Composable () -> Unit)? = null
 ) {
   SnakeGameDirectionButton(
     name = stringResource(resource = Res.string.str_up),
     icon = SnakeGameTokens.DirectionButtons.Icons.Up,
     onClick = { onClick(Direction.UP) },
+    enabled = enabled,
   )
   Row(horizontalArrangement = Arrangement.spacedBy(-8.dp)) {
     SnakeGameDirectionButton(
       name = stringResource(resource = Res.string.str_left),
       icon = SnakeGameTokens.DirectionButtons.Icons.Left,
       onClick = { onClick(Direction.LEFT) },
+      enabled = enabled,
     )
     if (centerSlot != null) {
       centerSlot?.invoke()
@@ -47,12 +50,14 @@ fun SnakeGameDirectionButtons(
       name = stringResource(resource = Res.string.str_right),
       icon = SnakeGameTokens.DirectionButtons.Icons.Right,
       onClick = { onClick(Direction.RIGHT) },
+      enabled = enabled,
     )
   }
   SnakeGameDirectionButton(
     name = stringResource(resource = Res.string.str_down),
     icon = SnakeGameTokens.DirectionButtons.Icons.Down,
     onClick = { onClick(Direction.DOWN) },
+    enabled = enabled,
   )
 }
 
@@ -64,11 +69,16 @@ fun SnakeGameDirectionButtons(
  * @param onClick The lambda called when user click in it.
  */
 @Composable
-internal fun SnakeGameDirectionButton(name: String, icon: ImageVector, onClick: () -> Unit) {
+internal fun SnakeGameDirectionButton(
+  enabled: Boolean = true,
+  name: String,
+  icon: ImageVector,
+  onClick: () -> Unit
+) {
   Image(
     imageVector = icon,
     contentDescription = name,
-    modifier = Modifier.size(SnakeGameTokens.DirectionButtons.Dimens.Size).clickable(onClick = onClick, onClickLabel = name),
+    modifier = Modifier.size(SnakeGameTokens.DirectionButtons.Dimens.Size).clickable(enabled = enabled, onClick = onClick, onClickLabel = name),
   )
 }
 
