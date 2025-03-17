@@ -45,6 +45,11 @@ class Snake {
     _state = _state.copy(growing = true, foodEaten = state.foodEaten + 1)
   }
 
+  /** Resets the snake state. */
+  fun resetSnakeState() {
+    _state = SnakeState()
+  }
+
   /** Updates the head and adjusts the body accordingly. */
   private fun setHead(newHead: SnakeCell) {
     val mutableBody = _state.body.toMutableList()
