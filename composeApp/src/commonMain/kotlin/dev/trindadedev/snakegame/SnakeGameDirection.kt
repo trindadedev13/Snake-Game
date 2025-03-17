@@ -6,8 +6,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.stringResource
@@ -77,6 +79,7 @@ internal fun SnakeGameDirectionButton(
 ) {
   Image(
     imageVector = icon,
+    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
     contentDescription = name,
     modifier = Modifier.size(SnakeGameTokens.DirectionButtons.Dimens.Size).clickable(enabled = enabled, onClick = onClick, onClickLabel = name),
   )
