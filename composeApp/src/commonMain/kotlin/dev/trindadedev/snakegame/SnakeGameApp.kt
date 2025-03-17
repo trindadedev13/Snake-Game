@@ -18,12 +18,12 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
+import dev.trindadedev.snakegame.time.epochMilliseconds
 import org.jetbrains.compose.resources.stringResource
 import snake.composeapp.generated.resources.Res
 import snake.composeapp.generated.resources.str_pause
 import snake.composeapp.generated.resources.str_play
 import kotlinx.coroutines.delay
-import kotlinx.datetime.Clock
 
 @Composable
 fun SnakeGameApp(viewModel: SnakeViewModel = viewModel { SnakeViewModel() }) {
@@ -44,9 +44,9 @@ fun SnakeGameApp(viewModel: SnakeViewModel = viewModel { SnakeViewModel() }) {
     while (true) {
       delay(uiState.gameSpeed)
       if (!uiState.isPaused) {
-        if (getMillis() - uiState.lastMoveTime >= uiState.snakeSpeed) {
+        if (epochMilliseconds - uiState.lastMoveTime >= uiState.snakeSpeed) {
           uiState.snake.moveSnake()
-          viewModel.setLastMoveTime(getMillis())
+          viewModel.setLastMoveTime(epochMilliseconds)
         }
         if (
           uiState.snake.state.head.x == uiState.food.x && uiState.snake.state.head.y == uiState.food.y
@@ -80,8 +80,4 @@ fun SnakeGameApp(viewModel: SnakeViewModel = viewModel { SnakeViewModel() }) {
       )
     }
   }
-}
-
-private inline fun getMillis(): Long {
-  return Clock.System.now().toEpochMilliseconds()
 }
