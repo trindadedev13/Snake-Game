@@ -29,8 +29,8 @@ open class GridItem(open val x: Int, open val y: Int) {
 }
 
 @Composable
-fun SnakeGameGrid(snake: Snake, food: Food) {
-  Column {
+fun SnakeGameGrid(modifier: Modifier = Modifier, snake: Snake, food: Food) {
+  Column(modifier = modifier) {
     for (y in 0 until SnakeGameTokens.GridItem.PerRow) {
       Row {
         for (x in 0 until SnakeGameTokens.GridItem.PerRow) {

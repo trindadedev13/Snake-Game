@@ -20,11 +20,11 @@ import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
 import dev.trindadedev.snakegame.time.epochMilliseconds
+import kotlinx.coroutines.delay
 import org.jetbrains.compose.resources.stringResource
 import snake.composeapp.generated.resources.Res
 import snake.composeapp.generated.resources.str_pause
 import snake.composeapp.generated.resources.str_play
-import kotlinx.coroutines.delay
 
 @Composable
 fun SnakeGameApp(viewModel: SnakeViewModel = viewModel { SnakeViewModel() }) {
@@ -37,9 +37,7 @@ fun SnakeGameApp(viewModel: SnakeViewModel = viewModel { SnakeViewModel() }) {
       }
     }
     lifecycleOwner.lifecycle.addObserver(observer)
-    onDispose {
-      lifecycleOwner.lifecycle.removeObserver(observer)
-    }
+    onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
   }
   LaunchedEffect(uiState) {
     while (true) {
@@ -50,7 +48,8 @@ fun SnakeGameApp(viewModel: SnakeViewModel = viewModel { SnakeViewModel() }) {
           viewModel.setLastMoveTime(epochMilliseconds)
         }
         if (
-          uiState.snake.state.head.x == uiState.food.x && uiState.snake.state.head.y == uiState.food.y
+          uiState.snake.state.head.x == uiState.food.x &&
+            uiState.snake.state.head.y == uiState.food.y
         ) {
           viewModel.setFood(generateFood())
           uiState.snake.growSnake()
@@ -64,7 +63,11 @@ fun SnakeGameApp(viewModel: SnakeViewModel = viewModel { SnakeViewModel() }) {
       horizontalAlignment = Alignment.CenterHorizontally,
       verticalArrangement = Arrangement.Center,
     ) {
-      SnakeGameInfo(modifier = Modifier.fillMaxWidth(), foodEaten = uiState.snake.state.foodEaten, snake = uiState.snake)
+      SnakeGameInfo(
+        modifier = Modifier.fillMaxWidth(),
+        foodEaten = uiState.snake.state.foodEaten,
+        snake = uiState.snake,
+      )
       SnakeGameGrid(snake = uiState.snake, food = uiState.food)
       Spacer(modifier = Modifier.height(16.dp))
       SnakeGameDirectionButtons(
@@ -74,11 +77,16 @@ fun SnakeGameApp(viewModel: SnakeViewModel = viewModel { SnakeViewModel() }) {
         },
         centerSlot = {
           SnakeGameDirectionButton(
-            name = stringResource(resource = if (uiState.isPaused) Res.string.str_play else Res.string.str_pause),
-            icon = if (uiState.isPaused) SnakeGameTokens.DirectionButtons.Icons.Play else SnakeGameTokens.DirectionButtons.Icons.Pause,
+            name =
+              stringResource(
+                resource = if (uiState.isPaused) Res.string.str_play else Res.string.str_pause
+              ),
+            icon =
+              if (uiState.isPaused) SnakeGameTokens.DirectionButtons.Icons.Play
+              else SnakeGameTokens.DirectionButtons.Icons.Pause,
             onClick = { viewModel.setIsPaused(!uiState.isPaused) },
           )
-        }
+        },
       )
     }
   }

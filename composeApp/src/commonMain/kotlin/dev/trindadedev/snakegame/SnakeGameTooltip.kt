@@ -15,24 +15,20 @@ import androidx.compose.ui.platform.LocalHapticFeedback
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
-fun Tooltip(
-  text: String,
-  content: @Composable () -> Unit
-) {
+fun Tooltip(modifier: Modifier = Modifier, text: String, content: @Composable () -> Unit) {
   val hapticFeedback = LocalHapticFeedback.current
   val tooltipState = rememberTooltipState()
   val positionProvider = TooltipDefaults.rememberRichTooltipPositionProvider()
 
   TooltipBox(
     tooltip = { RichTooltip { Text(text) } },
-    modifier = Modifier.combinedClickable(
-       onClick = {},
-       onLongClick = {
-          hapticFeedback.performHapticFeedback(HapticFeedbackType.LongPress)
-       }
-    ),
+    modifier =
+      modifier.combinedClickable(
+        onClick = {},
+        onLongClick = { hapticFeedback.performHapticFeedback(HapticFeedbackType.LongPress) },
+      ),
     positionProvider = positionProvider,
     state = tooltipState,
-    content = content
+    content = content,
   )
 }

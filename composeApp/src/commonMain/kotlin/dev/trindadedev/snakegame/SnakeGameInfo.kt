@@ -19,11 +19,7 @@ import snake.composeapp.generated.resources.str_snake_size
 
 /** Displays info about game state. */
 @Composable
-fun SnakeGameInfo(
-  modifier: Modifier = Modifier,
-  foodEaten: Int,
-  snake: Snake,
-) {
+fun SnakeGameInfo(modifier: Modifier = Modifier, foodEaten: Int, snake: Snake) {
   Row(modifier = modifier) {
     SnakeGameInfoItem(
       boxColor = SnakeGameTokens.GridItem.Colors.FoodColor,
@@ -40,26 +36,28 @@ fun SnakeGameInfo(
 
 @Composable
 private fun SnakeGameInfoItem(
+  modifier: Modifier = Modifier,
   boxColor: Color,
   value: Int,
-  name: String 
+  name: String,
 ) {
-  Tooltip(name) {
+  Tooltip(text = name) {
     Row(
+      modifier = modifier,
       verticalAlignment = Alignment.CenterVertically,
-      horizontalArrangement = Arrangement.Center
-    ){
+      horizontalArrangement = Arrangement.Center,
+    ) {
       Box(
-        modifier = Modifier
-          .size(SnakeGameTokens.GridItem.Dimens.Size * 2)
-          .border(
-            border =
-              BorderStroke(
-                width = SnakeGameTokens.GridItem.Dimens.BorderStrokeWidth,
-                color = SnakeGameTokens.GridItem.Colors.BorderStrokeColor
-              )
-          )
-          .background(boxColor)
+        modifier =
+          Modifier.size(SnakeGameTokens.GridItem.Dimens.Size * 2)
+            .border(
+              border =
+                BorderStroke(
+                  width = SnakeGameTokens.GridItem.Dimens.BorderStrokeWidth,
+                  color = SnakeGameTokens.GridItem.Colors.BorderStrokeColor,
+                )
+            )
+            .background(boxColor)
       )
       Text(text = value.toString())
     }
