@@ -7,4 +7,6 @@
   <string name="str_restart">Restart</string>
   <string name="str_play">Play</string>
   <string name="str_pause">Pause</string>
+  <string name="str_food_eaten">Food Eaten</string>
+  <string name="str_snake_size">Snake Size</string>
 </resources>

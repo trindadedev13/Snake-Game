@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -63,10 +64,11 @@ fun SnakeGameApp(viewModel: SnakeViewModel = viewModel { SnakeViewModel() }) {
       horizontalAlignment = Alignment.CenterHorizontally,
       verticalArrangement = Arrangement.Center,
     ) {
-      SnakeGameGrid(uiState.snake, uiState.food)
+      SnakeGameInfo(modifier = Modifier.fillMaxWidth(), foodEaten = uiState.snake.state.foodEaten, snake = uiState.snake)
+      SnakeGameGrid(snake = uiState.snake, food = uiState.food)
       Spacer(modifier = Modifier.height(16.dp))
       SnakeGameDirectionButtons(
-        enabled = uiState.isPaused,
+        enabled = !uiState.isPaused,
         onClick = {
           if (!uiState.snake.state.direction.isOpposite(it)) viewModel.setCurrentDirection(it)
         },
