@@ -27,6 +27,7 @@ import org.jetbrains.compose.resources.stringResource
 import snake.composeapp.generated.resources.Res
 import snake.composeapp.generated.resources.str_pause
 import snake.composeapp.generated.resources.str_play
+import snake.composeapp.generated.resources.str_restart_game
 
 @Composable
 fun SnakeGameApp(viewModel: SnakeViewModel = viewModel { SnakeViewModel() }) {
@@ -91,9 +92,9 @@ fun SnakeGameApp(viewModel: SnakeViewModel = viewModel { SnakeViewModel() }) {
         },
       )
       Button(
-        onClick = { uiState.snake.resetSnakeState() }
+        onClick = { viewModel.restartGame() }
       ) {
-        Text(text = "Restart")
+        Text(text = stringResource(resource = Res.string.str_restart_game))
       }
     }
   }
