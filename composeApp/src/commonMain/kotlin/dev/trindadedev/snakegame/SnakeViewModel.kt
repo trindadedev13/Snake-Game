@@ -34,4 +34,9 @@ class SnakeViewModel : ViewModel() {
     if (_uiState.isPaused == newIsPaused) return
     _uiState = _uiState.copy(isPaused = newIsPaused)
   }
+
+  fun restartGame() {
+    _uiState.snake.resetSnakeState()
+    setFood(generateFood())
+  }
 }

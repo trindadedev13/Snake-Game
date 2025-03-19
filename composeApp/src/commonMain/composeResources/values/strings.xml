@@ -9,4 +9,5 @@
   <string name="str_pause">Pause</string>
   <string name="str_food_eaten">Food Eaten</string>
   <string name="str_snake_size">Snake Size</string>
+  <string name="str_restart_game">Restart Game</string>
 </resources>

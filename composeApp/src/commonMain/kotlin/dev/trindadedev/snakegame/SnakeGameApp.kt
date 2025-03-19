@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
@@ -25,6 +27,7 @@ import org.jetbrains.compose.resources.stringResource
 import snake.composeapp.generated.resources.Res
 import snake.composeapp.generated.resources.str_pause
 import snake.composeapp.generated.resources.str_play
+import snake.composeapp.generated.resources.str_restart_game
 
 @Composable
 fun SnakeGameApp(viewModel: SnakeViewModel = viewModel { SnakeViewModel() }) {
@@ -88,6 +91,11 @@ fun SnakeGameApp(viewModel: SnakeViewModel = viewModel { SnakeViewModel() }) {
           )
         },
       )
+      Button(
+        onClick = { viewModel.restartGame() }
+      ) {
+        Text(text = stringResource(resource = Res.string.str_restart_game))
+      }
     }
   }
 }
